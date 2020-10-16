@@ -79,27 +79,3 @@ val n_iters = 10000
 val lr = 0.01
 
 val (history, optimal_params) = gradient_descent (X, Y, params, lr, n_iters, [])
-
-(* fun get_mean_std_vecs X = 
-  let
-    open Vector
-    open Array2
-    val get_mean = fn v => ((sum_vec v) / (real (length v)))
-    val mean_vec = Vector.tabulate (nCols X, fn i => get_mean (column (X, i)))
-    val get_variance = fn (v, mean) => (sum_vec (elem_square (Vector.map (fn v_i => v_i - mean) v))) / (real (length v))
-    val get_stdev = Math.sqrt o get_variance
-    val std_vec = Vector.tabulate (nCols X, fn i => get_stdev (column (X, i), Vector.sub (mean_vec, i))) 
-  in
-    (mean_vec, std_vec)
-  end *)
-
-(* fun scale_by (mean_vec, std_vec) X = 
-  let
-    open Array2
-    val scale_element_by = fn (r, c) => (Array2.sub(X, r, c) - Vector.sub(mean_vec, c))/(Vector.sub(std_vec, c))
-  in
-    Array2.tabulate Array2.ColMajor (Array2.nRows X, Array2.nCols X, scale_element_by) 
-  end *)
-
-(* val scale = scale_by (get_mean_std_vecs X)
-val X = scale X *)
